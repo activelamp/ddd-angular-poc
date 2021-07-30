@@ -1,0 +1,25 @@
+<p
+  *ngIf="
+    (numberTriviaLoaded$ | async) === false && (numberTriviaLoading$ | async) === false;
+    else loading
+  "
+>
+  Start searching!
+</p>
+
+<ng-template #loading>
+  <ng-container *ngIf="numberTriviaLoading$ | async">
+    <h2>Loading...</h2>
+  </ng-container>
+</ng-template>
+
+<ng-container *ngIf="failureMessage$ | async">
+  <h2>Failure: {{ failureMessage$ | async }}</h2>
+</ng-container>
+
+<app-trivia-display
+  *ngIf="currentTrivia$ | async"
+  [trivia]="currentTrivia$ | async"
+></app-trivia-display>
+
+<app-trivia-controls (number)="setNumber($event)"></app-trivia-controls>

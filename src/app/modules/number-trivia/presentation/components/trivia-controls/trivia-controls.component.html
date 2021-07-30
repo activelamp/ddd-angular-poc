@@ -1,0 +1,5 @@
+<form [formGroup]="numberForm" (ngSubmit)="onSubmit()">
+  <label for="the_number">Input a number</label>
+  <input id="the_number" type="text" formControlName="theNumber" />
+  <button type="submit" [disabled]="!numberForm.valid">Search</button>
+</form>
